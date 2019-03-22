@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  auth:
+    build:
+      context: auth
+      dockerfile: Dockerfile
+    ports:
+      - "${AUTH_PORT}:80"
+    restart: on-failure
+  linkshortener:
+    build:
+      context: linkshortener
+      dockerfile: Dockerfile
+      #    command: python apiplatform/manage.py runserver 0.0.0.0:8000
+    ports:
+      - "${API_PORT}:80"
+    restart: on-failure

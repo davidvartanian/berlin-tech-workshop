@@ -9,8 +9,6 @@ verify_ssl = true
 django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
-django-rest-swagger = "*"
-django-cors-headers = "*"
-graphene-django = ">=2.0"
+
 [requires]
 python_version = "3.6"

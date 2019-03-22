@@ -1,4 +1,4 @@
-# Development Process
+# Development Process - Part 1
 
 ## Documentation
 * https://www.django-rest-framework.org/
@@ -32,6 +32,8 @@
 * find the file settings.py inside project directory
 * find variable INSTALLED_APPS
 * add your app name `shortener` and `rest_framework` to the list
+
+## App Implementation
 
 ### Model Creation
 * Find the file `shortener/models.py`
