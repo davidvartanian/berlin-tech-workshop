@@ -4,6 +4,6 @@ from shortener.models import Link
 
 class LinkSerializer(serializers.ModelSerializer):
     class Meta:
-        model = pass
-        fields = ""
+        model = Link
+        fields = "__all__"
     # Complete implementation of serializer class

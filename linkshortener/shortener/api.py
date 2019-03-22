@@ -1,12 +1,13 @@
-from shortener.models import Link
 from rest_framework import viewsets, permissions
+from rest_framework.permissions import IsAuthenticated
+from shortener.models import Link
 from .serializers import LinkSerializer
 
 
 class LinkViewSet(viewsets.ModelViewSet):
-    queryset = pass
+    queryset = Link
     permission_classes = [
-        pass
+        IsAuthenticated,
     ]
-    serializer_class = pass
+    serializer_class = LinkSerializer
     # Complete view set class implementation
