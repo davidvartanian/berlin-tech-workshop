@@ -1,7 +1,7 @@
 from rest_framework import routers
-from .api import LinkViewSet
 from django.conf.urls import url
 from graphene_django.views import GraphQLView
+from .views import LinkViewSet
 
 
 router = routers.DefaultRouter()

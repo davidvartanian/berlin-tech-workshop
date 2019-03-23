@@ -8,6 +8,3 @@
 * Uncomment code in `linkshortener/settings.py`
 * Run $`python manage.py makemigrations`
 * Run $`python manage.py migrate`
-
-## TODO
-* Continue https://youtu.be/0d7cIfiydAc?t=784

@@ -23,10 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'i5v&x&c*4*ke$)0qg8@k@ztonkk24+ttqz6x4mplm@ge+3#zns'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == "True"
+# DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shortener.apps.ShortenerConfig',
     'rest_framework',
+    'rest_framework_swagger',
     'corsheaders',
     'graphene_django',
-    # Add apps here
 ]
 
 GRAPHENE = {
@@ -120,27 +121,43 @@ CORS_ORIGIN_WHITELIST = (
 
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'shortener.utils.auth.BearerAuthentication',
+    ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
-    )
+    ),
+    'EXCEPTION_HANDLER': 'shortener.utils.handlers.custom_exception_handler'
 }
 
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+
+AUTHENTICATION_SERVICE = {
+    'JWT_VALIDATION_URL': "%s/auth/user" % os.getenv('AUTH_URL'),
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
+
 
 TIME_ZONE = 'UTC'
 
+
 USE_I18N = True
 
+
 USE_L10N = True
+
 
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATIC_URL = '/static/'
+
+
+STATIC_ROOT = 'static/'

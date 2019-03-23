@@ -38,8 +38,8 @@
 ### Model Creation
 * Find the file `shortener/models.py`
 * Complete the implementation of the `Link` model class
-* Run command: $`python manage.py makemigrations shortener`
-* Run command: $`python manage.py migrate`
+* Run command: $`pipenv run python manage.py makemigrations shortener`
+* Run command: $`pipenv run python manage.py migrate`
 
 ### Serializer Creation
 * Find the file `shortener/serializers.py`
@@ -54,7 +54,7 @@
 * Add endpoint URLs to app router
 
 ### Run it!
-* Run $`python manage.py runserver`
+* Run $`pipenv run python manage.py runserver`
 * Browse `http://127.0.0.1:8000/api/links/`
 
 ### Add First Link

@@ -15,8 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+from rest_framework_swagger.views import get_swagger_view
+from shortener import views
+
+
+schema_view = get_swagger_view(title='Shortener API')
+
 
 urlpatterns = [
+    url(r'^$', views.api_root, name="home"),
+    path('api/schema', schema_view),
     path('admin/', admin.site.urls),
     path('', include('shortener.urls')),
 ]

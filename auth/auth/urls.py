@@ -13,9 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from django.conf.urls import url, handler404
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework_swagger.views import get_swagger_view
+from authapi.utils.handlers import view_404_exception
+from authapi import views
+
+
+schema_view = get_swagger_view(title='Authentication API')
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url(r'^$', views.api_root, name="home"),
+    # endpoints from Django REST framework JWT package
+    url(r'^auth/', include('authapi.urls')),
+    url(r'^api/schema$', schema_view),
 ]
+
+handler404 = view_404_exception
