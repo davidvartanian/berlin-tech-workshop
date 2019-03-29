@@ -3,14 +3,15 @@ services:
   - docker
 
 before_install:
-  - docker build -t davidvartanian/ls-shortener-$TRAVIS_BRANCH ./linkshortener
-  - docker build -t davidvartanian/ls-auth-$TRAVIS_BRANCH ./auth
+  - export CURR_BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+  - docker build -t davidvartanian/ls-shortener-$CURR_BRANCH ./linkshortener
+  - docker build -t davidvartanian/ls-auth-$CURR_BRANCH ./auth
 
 script:
-  - docker run davidvartanian/ls-shortener-$TRAVIS_BRANCH python manage.py test
-  - docker run davidvartanian/ls-auth python-$TRAVIS_BRANCH manage.py test
+  - docker run davidvartanian/ls-shortener-$CURR_BRANCH python manage.py test
+  - docker run davidvartanian/ls-auth python-$CURR_BRANCH manage.py test
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push davidvartanian/ls-shortener-$TRAVIS_BRANCH
-  - docker push davidvartanian/ls-auth-$TRAVIS_BRANCH
+  - docker push davidvartanian/ls-shortener-$CURR_BRANCH
+  - docker push davidvartanian/ls-auth-$CURR_BRANCH
