@@ -7,5 +7,5 @@ before_install:
   - docker build -t davidvartanian/ls-auth ./auth
 
 script:
-  - docker run davidvartanian/ls-shortener python manage.py runtests
-  - docker run davidvartanian/ls-auth python manage.py runtests
+  - docker run davidvartanian/ls-shortener python manage.py test
+  - docker run davidvartanian/ls-auth python manage.py test
