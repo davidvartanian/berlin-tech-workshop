@@ -2,9 +2,8 @@
 Tests related with user operations
 """
 from django.test import TestCase
-from user.models import User
+from .models import User
 from rest_framework.test import APIClient
-from rest_framework_jwt import utils
 from rest_framework import status
 import json
 
