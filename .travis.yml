@@ -9,7 +9,7 @@ before_install:
 
 script:
   - docker run davidvartanian/ls-shortener-$CURR_BRANCH python manage.py test
-  - docker run davidvartanian/ls-auth python-$CURR_BRANCH manage.py test
+  - docker run davidvartanian/ls-auth-$CURR_BRANCH python manage.py test
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
