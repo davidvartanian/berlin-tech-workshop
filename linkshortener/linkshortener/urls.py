@@ -27,5 +27,5 @@ urlpatterns = [
     url(r'^$', views.api_root, name="home"),
     path('api/schema', schema_view),
     path('admin/', admin.site.urls),
-    path('', include('shortener.urls')),
+    path('api/', include('shortener.urls')),
 ]
